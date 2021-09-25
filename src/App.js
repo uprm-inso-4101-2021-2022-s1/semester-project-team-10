@@ -1,6 +1,21 @@
-import logo from './logo.svg';
 // import './App.css';
 import './main.scss';
+// import { ViewState } from '@devexpress/dx-react-scheduler';
+// import {
+//   Scheduler,
+//   DayView,
+//   Appointments,
+// } from '@devexpress/dx-react-scheduler-material-ui';
+
+import Demo from './Schedule';
+
+// const currentDate = '2018-11-01';
+// const schedulerData = [
+//   { startDate: '2018-11-01T09:45', endDate: '2018-11-01T11:00', title: 'Meeting' },
+//   { startDate: '2018-11-01T12:00', endDate: '2018-11-01T13:30', title: 'Go to a gym' },
+// ];
+
+
 
 function App() {
   return (
@@ -34,8 +49,23 @@ function App() {
         
     </div>
     <div id="display">
-        <h3 sytle={{margin:0,
-      color: "black" }}>Work in progress merged calendar coming soon</h3>
+        {/* <h3 sytle={{margin:0,color: "black" }}>Work in progress merged calendar coming soon</h3> */}
+        
+    {/* <Scheduler
+      data={schedulerData}
+    >
+      <ViewState
+        currentDate={currentDate}
+      />
+      <DayView
+        startDayHour={9}
+        endDayHour={14}
+      />
+      <Appointments />
+    </Scheduler> */}
+    <div style={{boxSizing: 'border-box'}}> 
+      <Demo/></div>
+  
     </div>
     
 </body>

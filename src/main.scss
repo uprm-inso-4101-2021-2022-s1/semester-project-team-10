@@ -145,13 +145,14 @@ header {
 }
 // Display Calendar Section
 #display {
+    box-sizing: border-box;
     height: 95%;
     width: 70%;
     margin: 0;
-
+    top:11.5%;
     position: absolute;
     right: 0;
-
+    size: 1000px;
     @include flex-centering;
     h3 {
         margin: 0;
