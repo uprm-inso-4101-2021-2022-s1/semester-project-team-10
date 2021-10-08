@@ -8,6 +8,8 @@ import './main.scss';
 // } from '@devexpress/dx-react-scheduler-material-ui';
 
 import Demo from './Schedule';
+import MetaTags from 'react-meta-tags';
+
 
 // const currentDate = '2018-11-01';
 // const schedulerData = [
@@ -19,7 +21,16 @@ import Demo from './Schedule';
 
 function App() {
   return (
+
     <div className="App">
+
+          <MetaTags>
+            <title>DaySynch</title>
+            <meta id="meta-description" name="description" content="Time Management Web" />
+            <meta id="og-title" property="og:title" content="MyApp" />
+            <meta id="og-image" property="og:image" content="https://i.pinimg.com/originals/c8/4f/fc/c84ffc99f868d4585e8b604709dcca75.png" />
+          </MetaTags>
+
       <header>
         <p>Day<span>Synch</span></p>
         <div id="profile-logo"></div>
