@@ -63,8 +63,9 @@ function App() {
       />
       <Appointments />
     </Scheduler> */}
-    <div style={{boxSizing: 'border-box'}}> 
-      <Demo/></div>
+    {/* <div style={{boxSizing: 'border-box'}}>  */}
+   
+      <Demo/>
   
     </div>
     
