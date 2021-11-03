@@ -1,186 +1,109 @@
 
-
-body {
-  height: 100vh;
-  margin: 0;
- 
-}
-
-header {
+Header {
+  /* border: 2px solid red; */
   background: #eaeaea;
-  height: 5%;
-
-  
-  /* @include flex-centering; */
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* p{
-      font-family: 'Roboto Mono', monospace;
-      font-family: 'Anton', sans-serif;
-      text-align: center;
-      margin: 0;
-      width: 500px;
-      font-size: 1.5rem;
-      span {
-          color: #a299f6
-      }
-  } */
-  /* #profile-logo {
-      background: pink;
-      height: 30px;
-      width: 30px;
-      border-radius: 100%;
-      margin: 2px;
-      position: absolute; 
-      right: 10px;
-      overflow: hidden;
-      transform: rotate(-45deg);
+}
 
-      /* &::after {
-          content: '';
-          display: block;
-          background: #a299f6;
-          height: 50%;
-          width: 100%;
-      } */
-  } */
-/* } */
-.menu {
+Header > p {
+  font-family: 'Roboto Mono', monospace;
+  font-family: 'Anton', sans-serif;
+  text-align: center;
+  margin: 0;
+  width: 500px;
+  font-size: 1.5rem;
+}
+Header > p > span {
+  color: #a299f6;
+}
 
-  height: 95%;
+#profile-logo {
+  background: pink;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  margin: 2px;
+  position: absolute; 
+  right: 10px;
+  overflow: hidden;
+  transform: rotate(-45deg);
+}
+#profile-logo::after {
+  content: '';
+  display: block;
+  background: #a299f6;
+  height: 50%;
+  width: 100%;
+}
+main {
+  /* border: 3px solid gold; */
+  display: flex;
+  
+}
+#menu {
+  /* border: 2px solid yellow; */
+  background: #eaeaea;
+  
   width: 30%;
   
-  /* @include flex-centering; */
   display: flex;
   justify-content: center;
   align-items: center;
-
   flex-direction: column;
+
+  position: relative;
+}
+
+.toggle-menu-btn {
   position: absolute;
-
-  
-
+  top: 10px;
+  right: 10px;
+  transform: scale(1.3);
+}
+.add-calendar-btn {
+  transform: scale(1.3);
+  color: #a299f6;
 }
 #calendar-container {
-  background: #eaeaea;
   width: 70%;
   height: auto;
+
   position: relative;
-  top: 0px;
+  top: -100px;
 }
 .calendar {
   background: white;
   height: 70px;
-  width: 50%;
+  
   margin: 10px 0px;
   border: 1px solid #707070;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  /* @include flex-centering;
-
-  p {
-      font-size: 1.5rem;
-      text-align: center;
-      padding: 0;
-      margin: 0;
-      font-family: 'Roboto Mono', monospace;
-  } */
- 
 }
 
-#button {
-  background: white;
-  height: 50px;
-  width: 50px;
-  border-radius: 100%;
-  /* @include flex-centering; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  position: absolute;
-  bottom: 200px;
-
-  /* &:hover {
-      opacity: 0.7;
-  }
-  &:active {
-      opacity: .5;
-  } */
-
-  /* #b-x {
-      position: absolute;
-      background: rgb(255, 130, 151);
-      height: 5px;
-      width: 50%;
-      border-radius: 2px;
-  } */
-  /* #b-y {
-      position: absolute;
-
-      background: rgb(255, 130, 151);
-      height: 5px;
-      width: 50%;
-      transform: rotate(90deg);
-      border-radius: 2px;
-
-  } */
-}
-#cancel-button {
-  height: 30px;
-  width: 30px;
-
-  position: absolute; 
-  top: 10px;
-  right: 10px;
-  
-  /* @include flex-centering; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  transform: rotate(45deg);
-  /* #c-x {
-      position: absolute; 
-      background: black;
-      height: 2.5px;
-      width: 100%;
-  } */
-  /* #c-y {
-      position: absolute; 
-      background: black;
-      height: 2px;
-      width: 100%;
-      transform: rotate(90deg);
-
-  } */
-  /* &:hover {
-      opacity: .5;
-  } */
-
-}
- /* Display Calendar Section */
 #display {
-  height: 95%;
+  /* border: 2px solid black; */
   width: 70%;
-  margin: 0;
+  
+}
 
-  position: absolute;
-  right: 0;
-  top: 5%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* @include flex-centering;
-  h3 {
-      margin: 0;
-      color: black;
-  } */
-  /* p {
-      margin: 0;
-  } */
-
+@media only screen and (max-width: 450px){
+  main {
+    flex-direction: column;
+  }
+  #menu {
+    min-height: 50vh;
+    width: 100%;
+  }
+  #calendar-container {
+    top: 0;
+  }
+  #display {
+    width: 100%;
+  }
 }
