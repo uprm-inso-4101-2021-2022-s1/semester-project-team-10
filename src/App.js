@@ -1,4 +1,5 @@
 // import './App.css';
+import { useState,useEffect } from 'react';
 import './main.scss';
 // import { ViewState } from '@devexpress/dx-react-scheduler';
 // import {
@@ -8,6 +9,7 @@ import './main.scss';
 // } from '@devexpress/dx-react-scheduler-material-ui';
 
 import Demo from './Schedule';
+import catchdata from './Schedule';
 // import MetaTags from 'react-meta-tags';
 
 
@@ -16,10 +18,33 @@ import Demo from './Schedule';
 //   { startDate: '2018-11-01T09:45', endDate: '2018-11-01T11:00', title: 'Meeting' },
 //   { startDate: '2018-11-01T12:00', endDate: '2018-11-01T13:30', title: 'Go to a gym' },
 // ];
+import axios from "axios";
 
 
 
 function App() {
+  
+  let [data,setData]=useState([])
+  // if(catchdata){
+  // axios
+  //     .get("/api/tasks/")
+  //     .then((res) => {console.log(res.data);
+  //       setData(res.data);
+  //     })
+  //     .catch((err) => console.log(err));}
+  
+  //console.log(data[0].startDate)
+  useEffect(() => {
+    axios
+    .get("/api/tasks/")
+    .then((res) => {console.log(res.data);
+      setData(res.data);
+      console.log('effect');
+    })
+    .catch((err) => console.log(err));
+    
+  }, [catchdata]);
+
   return (
 
     <div className="App">
@@ -76,7 +101,8 @@ function App() {
     </Scheduler> */}
     {/* <div style={{boxSizing: 'border-box'}}>  */}
    
-      <Demo/>
+      <Demo data={data}/>
+      {/* <Dema/> */}
   
     </div>
     

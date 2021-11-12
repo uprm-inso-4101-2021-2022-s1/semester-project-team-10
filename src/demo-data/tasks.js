@@ -1,5 +1,6 @@
 import { green, deepOrange, lightBlue } from '@material-ui/core/colors';
 
+
 export const tasks = [
   {
     title: 'Recall Rebate Form',
@@ -208,6 +209,8 @@ export const tasks = [
     endDate: '2018-05-03T13:30',
   },
 ];
+
+console.log(tasks)
 
 export const priorities = [
   { id: 1, text: 'Low Priority', color: green },
