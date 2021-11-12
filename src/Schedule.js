@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { useState,useEffect } from 'react';
 import {
   ViewState,
+  EditingState,
   GroupingState,
   IntegratedGrouping,
 } from '@devexpress/dx-react-scheduler';
@@ -33,8 +35,19 @@ import FormControl from '@material-ui/core/FormControl';
 import classNames from 'clsx';
 
 import { priorities } from './demo-data/tasks';
-import { data as tasks } from './demo-data/grouping';
+import { data as data1 } from './demo-data/grouping';
+import axios from "axios";
+console.log(data1);
 
+// import * as AspNetData from 'devextreme-aspnet-data-nojquery';
+
+
+// axios
+//       .get("/api/tasks/")
+//       .then((res) => setTask(res.data))
+//       .catch((err) => console.log(err));
+// console.log("task"+tasks)
+export let catchdata=true;
 const grouping = [{
   resourceName: 'priorityId',
 }];
@@ -384,21 +397,56 @@ const TooltipContent = ({
   );
 };
 
+// import CustomStore from "devextreme/data/custom_store";
+// import DataSource from "devextreme/data/data_source";
+
+// function handleErrors(response) {
+//   if (!response.ok)
+//       throw Error(response.statusText);
+//   return response;
+// }
+// const schedulerDataSource = new DataSource({
+//   store: new CustomStore({
+//       loadMode: "raw",   
+//       load: () => {
+//           return fetch("/api/tasks/")
+//                   .then(handleErrors);
+//       }
+//   }),
+//   paginate: false
+// });
+
+
+// function DataList(catchdata){
+//   useEffect(() => {
+//     axios
+//     .get("/api/tasks/")
+//     .then((res) => {console.log(res.data);
+//       console.log('effect');
+//       return res.data;
+//     })
+//     .catch((err) => console.log(err));
+    
+//   }, [catchdata]);
+// }
+
 export default class Demo extends React.PureComponent {
+  
   constructor(props) {
     super(props);
 
     this.state = {
-      currentDate: '2018-05-28',
+      currentDate: '2018-04-17',
       currentViewName: 'Day',
-      data: tasks,
+      data: [],
       currentPriority: 0,
       resources: [{
         fieldName: 'priorityId',
         title: 'Priority',
         instances: priorities,
       }],
-    };
+    };    
+
     this.currentViewNameChange = (currentViewName) => {
       this.setState({ currentViewName });
     };
@@ -424,18 +472,62 @@ export default class Demo extends React.PureComponent {
   }
 
   componentDidUpdate() {
-    this.flexibleSpace.update(); 
+    this.flexibleSpace.update();
+    //this.refreshList();
   }
-
+  refreshList = () => {
+    // axios
+    //   .get("/api/tasks/")
+    //   .then((res) => this.setState({data: res.data }))
+    //   .catch((err) => console.log(err));
+    //   console.log("data1"+this.data);
+    axios
+      .get("/api/tasks/")
+      .then((res) =>console.log(res.data))
+      .catch((err) => console.log(err));
+      console.log("data1"+this.data);
+  };
+  commitChanges({ added, changed, deleted }) {
+    const item = { title: added.title, endDate: added.endDate ,
+       startDate: added.startDate, allDay:added.allDay,priorityId:added.priorityId };
+    axios
+      .post("http://localhost:8000/api/tasks/", item)
+      .then((res) => {console.log('done');
+    catchdata=!catchdata;
+    window.location.reload();});
+    console.log(added);
+    console.log(item);
+    console.log(JSON.stringify(added.endDate))
+    // this.setState((state) => {
+    //   let { data } = state;
+    //   if (added) {
+    //     const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
+    //     data = [...data, { id: startingAddedId, ...added }];
+    //   }
+    //   if (changed) {
+    //     data = data.map(appointment => (
+    //       changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment));
+    //   }
+    //   if (deleted !== undefined) {
+    //     data = data.filter(appointment => appointment.id !== deleted);
+    //   }
+    //   return { data };
+    // });
+  }
   render() {
+    
+    //this.refreshList();
     const {
       data, currentDate, currentViewName, currentPriority, resources,
     } = this.state;
-
+    console.log("data"+data);
+    console.log(this.props.data);
+    console.log(currentPriority)
     return (
       <Paper>
         <Scheduler
-          data={filterTasks(data, currentPriority)}
+          data={filterTasks(this.props.data, currentPriority)}
+          // dataSource={schedulerDataSource}
           height={660}
         >
           <ViewState
@@ -462,6 +554,7 @@ export default class Demo extends React.PureComponent {
             name="Work Week"
             timeTableCellComponent={WeekViewTimeTableCell}
             dayScaleCellComponent={WeekViewDayScaleCell}
+           
           />
           <AllDayPanel
             cellComponent={AllDayCell}
@@ -478,15 +571,58 @@ export default class Demo extends React.PureComponent {
           />
           <Toolbar flexibleSpaceComponent={this.flexibleSpace} />
           <DateNavigator />
-          <ViewSwitcher />
+          <ViewSwitcher /> 
+          <EditingState
+            onCommitChanges={this.commitChanges}
+          />
           <AppointmentTooltip
             contentComponent={TooltipContent}
             showOpenButton
             showCloseButton
           />
-          <AppointmentForm readOnly />
+          
+          <AppointmentForm />
         </Scheduler>
       </Paper>
     );
   }
 }
+
+// const url = 'https://js.devexpress.com/Demos/Mvc/api/SchedulerData';
+// const dataSource = AspNetData.createStore({
+//   key: 'AppointmentId',
+//   loadUrl: `${url}/Get`,
+//   insertUrl: `${url}/Post`,
+//   updateUrl: `${url}/Put`,
+//   deleteUrl: `${url}/Delete`,
+//   onBeforeSend(_, ajaxOptions) {
+//     ajaxOptions.xhrFields = { withCredentials: true };
+//   },
+// });
+
+// const currentDate = new Date(2021, 3, 27);
+// const views = ['day', 'workWeek', 'month'];
+
+// export class Dema extends React.Component {
+//   render() {
+//     return (
+//       <Scheduler
+//         timeZone="America/Los_Angeles"
+//         dataSource={dataSource}
+//         views={views}
+//         defaultCurrentView="day"
+//         defaultCurrentDate={currentDate}
+//         height={600}
+//         startDayHour={9}
+//         endDayHour={19}
+//         remoteFiltering={true}
+//         dateSerializationFormat="yyyy-MM-ddTHH:mm:ssZ"
+//         textExpr="Text"
+//         startDateExpr="StartDate"
+//         endDateExpr="EndDate"
+//         allDayExpr="AllDay"
+//         recurrenceRuleExpr="RecurrenceRule"
+//         recurrenceExceptionExpr="RecurrenceException" />
+//     );
+//   }
+// }

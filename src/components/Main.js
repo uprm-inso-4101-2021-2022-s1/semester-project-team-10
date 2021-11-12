@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Calendars from '../components/Calendars'
 import { FaAngleLeft, FaPlusCircle } from 'react-icons/fa';
 
@@ -10,6 +9,7 @@ import { FaAngleLeft, FaPlusCircle } from 'react-icons/fa';
 // } from '@devexpress/dx-react-scheduler-material-ui';
 
 import Demo from '../Schedule';
+
 // import MetaTags from 'react-meta-tags';
 
 
@@ -18,6 +18,10 @@ import Demo from '../Schedule';
 //   { startDate: '2018-11-01T09:45', endDate: '2018-11-01T11:00', title: 'Meeting' },
 //   { startDate: '2018-11-01T12:00', endDate: '2018-11-01T13:30', title: 'Go to a gym' },
 // ];
+import { useState,useEffect } from 'react';
+
+
+import axios from "axios";
 
 const Main = () => {
     const [calendars, setCalendars] = useState([
@@ -34,6 +38,26 @@ const Main = () => {
           text: 'CalendarThree'
         },
     ])
+    let [data,setData]=useState([])
+    // if(catchdata){
+    // axios
+    //     .get("/api/tasks/")
+    //     .then((res) => {console.log(res.data);
+    //       setData(res.data);
+    //     })
+    //     .catch((err) => console.log(err));}
+    
+    //console.log(data[0].startDate)
+    useEffect(() => {
+      axios
+      .get("/api/tasks/")
+      .then((res) => {console.log(res.data);
+        setData(res.data);
+        console.log('effect');
+      })
+      .catch((err) => console.log(err));
+      
+    }, []);
 
     return (
         <main>
@@ -60,7 +84,7 @@ const Main = () => {
                 </Scheduler> */
             }
         
-            <Demo/>
+            <Demo data={data}/>
   
       </div>
         </main>

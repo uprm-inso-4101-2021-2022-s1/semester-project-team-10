@@ -1,3 +1,11 @@
+import axios from "axios";
+
+export let tasks;
+
+ axios
+      .get("/api/tasks/")
+      .then((res) => tasks=res.data)
+      .catch((err) => console.log(err));
 export const data = [
     {
       title: 'Website Re-Design Plan',
@@ -345,4 +353,4 @@ export const data = [
       id: 2,
     },
   ];
-  
+  console.log(data)
