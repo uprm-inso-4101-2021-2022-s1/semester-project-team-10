@@ -6,6 +6,7 @@ import {
   GroupingState,
   IntegratedGrouping,
 } from '@devexpress/dx-react-scheduler';
+import { Resource, View } from 'devextreme-react/scheduler';
 import {
   Scheduler,
   WeekView,
@@ -19,6 +20,8 @@ import {
   AppointmentForm,
   GroupingPanel,
   Resources,
+  MonthView,
+
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { connectProps } from '@devexpress/dx-react-core';
 import { withStyles, makeStyles, fade } from '@material-ui/core/styles';
@@ -528,8 +531,10 @@ export default class Demo extends React.PureComponent {
         <Scheduler
           data={filterTasks(this.props.data, currentPriority)}
           // dataSource={schedulerDataSource}
+          currentView={"agenda"}
           height={660}
         >
+          
           <ViewState
             currentDate={currentDate}
             currentViewName={currentViewName}
@@ -556,6 +561,11 @@ export default class Demo extends React.PureComponent {
             dayScaleCellComponent={WeekViewDayScaleCell}
            
           />
+          <MonthView
+            startDayHour={9}
+            endDayHour={17}           
+          />
+          
           <AllDayPanel
             cellComponent={AllDayCell}
           />

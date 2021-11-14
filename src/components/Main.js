@@ -9,6 +9,7 @@ import { FaAngleLeft, FaPlusCircle } from 'react-icons/fa';
 // } from '@devexpress/dx-react-scheduler-material-ui';
 
 import Demo from '../Schedule';
+import Demo1 from '../Schedule1';
 
 // import MetaTags from 'react-meta-tags';
 
@@ -84,7 +85,7 @@ const Main = () => {
                 </Scheduler> */
             }
         
-            <Demo data={data}/>
+            <Demo1 data={data}/>
   
       </div>
         </main>
