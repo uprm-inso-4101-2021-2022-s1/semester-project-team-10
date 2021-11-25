@@ -27,7 +27,7 @@ export const priorityData = [{
     color: '#679ec5',
   },
   ];
-const currentDate = new Date(2018, 3, 17);
+const currentDate = new Date();
 const dayOfWeekNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const priorityGroups = ['priorityId'];
 
@@ -39,7 +39,7 @@ class Demo1 extends React.Component {
       <Scheduler
         timeZone="America/Los_Angeles"
         dataSource={this.props.data}
-        defaultCurrentView="agenda"
+        defaultCurrentView="month"
         showAllDayPanel={false}
         defaultCurrentDate={currentDate}
         height={600}
