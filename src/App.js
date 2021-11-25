@@ -22,8 +22,25 @@ import axios from "axios";
 
 
 
+
+
+
+
 function App() {
-  
+
+  // let elem0 = document.getElementById("signin")
+  // let elem1 = document.getElementById("login")
+  // let elem2 = document.getElementById("logout")
+
+  // console.log(elem0)
+  // if(elem0&&elem1&&elem2){
+  //   console.log("wepa")
+  //   elem0.onclick= SignIn()
+  //   elem1.onclick= LogIn()
+  //   elem2.onclick= LogOut()
+  // }
+
+  let [log,setLog]=useState([localStorage.getItem('token') ? true : false,""])
   let [data,setData]=useState([])
   // if(catchdata){
   // axios
@@ -42,6 +59,32 @@ function App() {
       console.log('effect');
     })
     .catch((err) => console.log(err));
+
+    // axios
+    // .get("/api/tasks/")
+    // .then((res) => {console.log(res.data);
+    //   setData(res.data);
+    //   console.log('effect');
+    // })
+    // .catch((err) => console.log(err));
+
+
+    if (log[0]) {
+    //   axios
+    // .post("http://localhost:8000/api/auth/register",data )
+    // .then((res) => {console.log('done');});}}
+
+
+    //   fetch('http://localhost:8000/core/current_user/', {
+    //     headers: {
+    //       Authorization: `JWT ${localStorage.getItem('token')}`
+    //     }
+    //   })
+    //     .then(res => res.json())
+    //     .then(json => {
+    //       this.setState({ username: json.username });
+    //     });
+    }
     
   }, [catchdata]);
 
