@@ -92,18 +92,122 @@ main {
   
 }
 
-@media only screen and (max-width: 450px){
-  main {
-    flex-direction: column;
-  }
-  #menu {
-    min-height: 50vh;
-    width: 100%;
-  }
-  #calendar-container {
-    top: 0;
-  }
-  #display {
-    width: 100%;
-  }
+
+
+/* Syling for login form  */
+
+.login-form {
+  background: lightblue;
+  color: white;
+  border-radius: 50px;
+  
+
+  position: absolute;
+  top: 100px;
+  z-index: 3;
+
+  max-width: 500px;
+  
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+/* inputs */
+
+.login-inputs {
+  border-radius: 15px;
+  border-style: none;
+  width: 70%;
+}
+/* login buttons */
+.login-btn-box {
+  /* border: 2px solid white; */
+  display: flex;
+}
+.login-btn {
+  background: rgb(89, 89, 255);
+  color: white;
+  border-radius: 20px;
+  border-style: none;
+
+  width: 70px;
+  height: 40px;
+  margin: 0px 20px;
+}
+
+.login-btn:hover{
+  opacity: .8;
+}
+.login-btn:active {
+  opacity: .65;
+}
+
+.login-cancel {
+  border: 2px solid white;
+  border-radius: 100%;
+  height: 30px;
+  width: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transform: rotate(45deg);
+}
+.login-cancel::before {
+  content: '';
+  display: block;
+  background: white;
+  height: 4px;
+  width: 70%;
+  border-radius: 2px;
+
+}
+.login-cancel::after{
+  content: '';
+  display: block;
+  background: white;
+  height: 4px;
+  width: 70%;
+  border-radius: 2px;
+
+  transform: rotate(90deg);
+  position: absolute;
+}
+
+.login-cancel:hover {
+  opacity: .8;
+}
+.login-cancel:active {
+  opacity: .6;
+}
+
+
+  /* of the login form */
+  @media only screen and (max-width: 450px){
+    main {
+      flex-direction: column;
+    }
+    #menu {
+      min-height: 50vh;
+      width: 100%;
+    }
+    #calendar-container {
+      top: 0;
+    }
+    #display {
+      width: 100%;
+    }
+  
+    /* of the login form */
+    .login-form {
+      width: 70vw;
+    }
+  }
+
